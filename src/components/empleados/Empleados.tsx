@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import FormEmpleados from './FormEmpleados'
+import ListaEmpleados from './ListEmpleados'
 
 interface list_empleados {
   id: number,
@@ -23,59 +24,47 @@ const list_inicial = [{
 
 }, {
   id: 3,
-  nombre: "Laura",
-  apellido: "Mora",
+  nombre: "luisa",
+  apellido: "claro",
   utilidad: 40,
   celular: "3228884443"
 }, {
   id: 4,
-  nombre: "Laura",
-  apellido: "Mora",
+  nombre: "mary",
+  apellido: "muñuz",
   utilidad: 60,
   celular: "3228884443"
 }
 
 ]
 export default function Empleados() {
-  const [empleados, setEmpleados] = useState<Array<list_empleados>>([])
+  const [empleados, setEmpleados] = useState<Array<list_empleados>>(list_inicial)
+  const [editar, setEditar] = useState<boolean>(false)
+  const [empleado,setEmpleado] = useState<list_empleados>({
+    id: empleados.length+1,
+    nombre: '',
+    apellido: '',
+    utilidad: 0,
+    celular: 'Celular'
+});
   
   useEffect(() => {
     setEmpleados(list_inicial)
+
   }, [])
 
+  useEffect(() => {
+    setEmpleado(empleado)
+    
+    console.log(empleado);
+  },[empleado])
+
   return (
-    <div className="ListaEmpleados">
-      <h1>LISTA DE EMPLEADOS</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Utilidad</th>
-            <th>Celular</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            empleados.map(empleado => {
-              return (
-                <tr>
-                  <td>{empleado.id}</td>
-                  <td>{empleado.nombre}</td>
-                  <td>{empleado.apellido}</td>
-                  <td>{empleado.utilidad}</td>
-                  <td> {empleado.celular}</td>
-                  <td>Editar</td>
-                </tr>
-              )
-            })
-          }
-        </tbody>
-      </table>
-
-      <FormEmpleados/>
-
+    <div className="form-empleados">
+      <FormEmpleados nuevoEmpleado={setEmpleados} empleado={empleado} editar={editar} setEditar2={setEditar} />
+      <h2 style={{display: 'flex', margin: '20px'}}>LISTA DE EMPLEADOS</h2>
+      <ListaEmpleados editarEmpleado={setEmpleado} empleados={empleados} setEditar2={setEditar} />
+      
     </div>
 
   )
