@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.form-empleados {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+}
+.form-empleados input{
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 4px 6px;
+}
+.form-empleados table {
+  border: 1px solid #ccc;
+  
+}
+.form-empleados tr{
+  border: 1px solid #ccc;
+}
+.form-empleados th{
+  border: 1px solid #ccc;
+}
+.form-empleados td{
+  border: 1px solid #ccc;
+}

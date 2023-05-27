@@ -7,7 +7,7 @@ export default function Sidebar() {
 
                 <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <svg className="bi me-2" width="40" height="32"><use></use></svg>
-                    <span className="fs-4">Sidebar</span>
+                    <span className="fs-4">Mansion Rosa</span>
                 </a>
                 <hr />
                 <ul className="nav nav-pills flex-column mb-auto" style={{minHeight:"62vh"}}>
@@ -26,19 +26,25 @@ export default function Sidebar() {
                     <li>
                         <a href="#" className="nav-link text-white">
                             <svg className="bi me-2" width="16" height="16"><use></use></svg>
-                            Orders
+                            Empleados
                         </a>
                     </li>
                     <li>
                         <a href="#" className="nav-link text-white">
                             <svg className="bi me-2" width="16" height="16"><use></use></svg>
-                            Products
+                            Ventas
                         </a>
                     </li>
                     <li>
                         <a href="#" className="nav-link text-white">
                             <svg className="bi me-2" width="16" height="16"><use></use></svg>
-                            Customers
+                            Agenda
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" className="nav-link text-white">
+                            <svg className="bi me-2" width="16" height="16"><use></use></svg>
+                            Turnos
                         </a>
                     </li>
                 </ul>
