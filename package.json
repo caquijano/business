@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.0.11",
     "bootstrap": "^5.2.3",
     "firebase": "^9.17.1",
+    "jquery": "^3.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
@@ -45,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.16",
     "standard": "^17.0.0"
   }
 }

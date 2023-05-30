@@ -35,3 +35,17 @@ code {
 .form-empleados td{
   border: 1px solid #ccc;
 }
+.botton-form{
+  margin: 15px;
+  border-radius: 5px;
+  border-color: #4caf50;
+  background-color: #4caf50;
+ color:aliceblue;
+}
+.botton-guardar{
+  margin: 15px;
+  border-radius: 5px;
+  border-color: #38a3f0;
+  background-color: #38a3f0;
+ color:aliceblue;
+}

@@ -1,6 +1,6 @@
 
 interface list_empleados {
-    id: number,
+    id: string,
     nombre: string,
     apellido: string,
     utilidad: number,
@@ -8,22 +8,24 @@ interface list_empleados {
 }
 interface Props {
     empleados: Array<{
-        id: number,
+        id: string,
         nombre: string,
         apellido: string,
         utilidad: number,
         celular: string,
     }>,
-    editarEmpleado: React.Dispatch<React.SetStateAction<list_empleados>>,
-    setEditar2:React.Dispatch<React.SetStateAction<boolean>>
+    setEmpleado: React.Dispatch<React.SetStateAction<list_empleados>>,
+    setEditar:React.Dispatch<React.SetStateAction<boolean>>,
 }
 
-export default function ListaEmpleados({empleados,editarEmpleado,setEditar2}:Props) {
+export default function ListaEmpleados({empleados,setEmpleado,setEditar}:Props) {
+    console.log(empleados);
     const editarEmp = (e:any) =>{
-        editarEmpleado(empleado => (empleados[e.target.value]))
-        setEditar2(editar => (true))
+        const result:list_empleados[] = empleados.filter(empleado => empleado.id == e.target.value)
+        setEmpleado(empleado => (result[0]))
+        setEditar(editar => (true))
     }
-    return (<table>
+    return (<table className="table table-hover">
         <thead>
             <tr>
                 <th>#</th>
@@ -36,18 +38,19 @@ export default function ListaEmpleados({empleados,editarEmpleado,setEditar2}:Pro
         </thead>
         <tbody>
             {
-                empleados.map(empleado => {
+                empleados.map((empleado , index) => {
+                    if(empleado.id !== '') {
                     return (
-                        <tr>
-                            <td>{empleado.id}</td>
+                        <tr key={empleado.id}>
+                            <td scope="col" >{index+1}</td>
                             <td>{empleado.nombre}</td>
                             <td>{empleado.apellido}</td>
                             <td>{empleado.utilidad}</td>
                             <td> {empleado.celular}</td>
-                            <td > <button  onClick={editarEmp} value={empleado.id-1} >Editar</button></td>
+                            <td > <button  onClick={editarEmp} value={empleado.id} >Editar</button></td>
                         </tr>
                     )
-                })
+                }})
             }
         </tbody>
     </table>)
