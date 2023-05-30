@@ -11,3 +11,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.form-empleados {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+}
+.form-empleados input{
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 4px 6px;
+}
+.form-empleados table {
+  border: 1px solid #ccc;
+  
+}
+.form-empleados tr{
+  border: 1px solid #ccc;
+}
+.form-empleados th{
+  border: 1px solid #ccc;
+}
+.form-empleados td{
+  border: 1px solid #ccc;
+}
+.botton-form{
+  margin: 15px;
+  border-radius: 5px;
+  border-color: #4caf50;
+  background-color: #4caf50;
+ color:aliceblue;
+}
+.botton-guardar{
+  margin: 15px;
+  border-radius: 5px;
+  border-color: #38a3f0;
+  background-color: #38a3f0;
+ color:aliceblue;
+}
