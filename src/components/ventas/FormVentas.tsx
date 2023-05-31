@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import $ from 'jquery';
 import { getValue } from "@testing-library/user-event/dist/utils";
+import Empleados from "../empleados/Empleados";
 
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -24,7 +25,8 @@ interface resumen {
     empleaadoId: string,
     servicioId: string,
     precio: number,
-    nombreServicio: string
+    nombreServicio: string,
+    nombreEmpleado:string
 }
 
 
@@ -46,50 +48,64 @@ interface Props {
         empleaadoId: string,
         servicioId: string,
         precio: number,
-        nombreServicio: string
+        nombreServicio: string,
+        nombreEmpleado:string
+
     }>>,
+    addResumen: Function
 }
 
-export default function FormVentas({ empleados, servicios, setResumen }: Props) {
+export default function FormVentas({ empleados, servicios, setResumen,addResumen }: Props) {
     const [precio, setPrecio] = useState(0);
     const [inputValues, setInputValues] = useState<resumen>({
         empleaadoId: '',
         servicioId: '',
         precio: 0,
-        nombreServicio: ''
+        nombreServicio: '',
+        nombreEmpleado: ''
     });
 
     const capturaId = () => {
         var empleadoId = $('#empleado').find(':selected').attr('value')
         var id2 = $('#servicio').find(':selected').attr('value')
+        console.log(empleadoId,id2)
+        if(empleadoId=='default'|| id2 == 'default' || id2 == undefined){
+            $('#precio').val(0)
+            
+            return
+        }
         var servicio = servicios.filter(servicio => servicio.id === id2)[0]
+        var empleado = empleados.filter(empleado => empleado.id === empleadoId)[0]
         var { nombre, precio, id } = servicio
+       console.log(empleado)
+       
         if (empleadoId && id) {
             setInputValues({
                 empleaadoId: String(empleadoId),
                 servicioId: id,
                 precio: precio,
-                nombreServicio: nombre
+                nombreServicio: nombre,
+                nombreEmpleado: String(empleado.nombre+' ' +empleado.apellido)
             })
         }
         if (id) {
             setPrecio(servicios.filter(servicio => servicio.id === id)[0].precio)
         }
-
-
-
     }
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
         setResumen(resumen => (inputValues))
+        $('#servicio').val('default')
 
     }
 
 
 
     return (
+
         <form className="needs-validation" onSubmit={handleSubmit}>
+            <h4 className="mt-3">Datos del cliente</h4>
             <div className="row g-3">
                 <div className="col-sm-6">
                     <label className="form-label">Nombre y Apellido</label>
@@ -119,7 +135,7 @@ export default function FormVentas({ empleados, servicios, setResumen }: Props) 
                     <div className="col-md-4 mt-0">
                         <label className="form-label">Servicio</label>
                         <select className="form-select" id="servicio" onChange={capturaId} >
-                            <option >Seleccione...</option>{
+                            <option value={'default'} aria-required>Seleccione...</option>{
                                 servicios.map((elemento, index) => {
                                     return (
                                         <option key={index} value={elemento.id}>{elemento.nombre} </option>
@@ -135,7 +151,7 @@ export default function FormVentas({ empleados, servicios, setResumen }: Props) 
                     <div className="col-md-3  mt-0">
                         <label className="form-label">Profesional</label>
                         <select className="form-select" id="empleado" onChange={capturaId}>
-                            <option value="">Seleccione...</option>{
+                            <option value="default">Seleccione...</option>{
                                 empleados.map((elemento, index) => {
                                     return (
                                         <option key={index} value={elemento.id}>{elemento.nombre + ' ' + elemento.apellido} </option>

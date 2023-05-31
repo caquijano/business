@@ -29,7 +29,8 @@ interface resumen {
     empleaadoId: string,
     servicioId: string,
     precio: number,
-    nombreServicio: string
+    nombreServicio: string,
+    nombreEmpleado:string
 }
 
 export default function Ventas() {
@@ -40,7 +41,8 @@ export default function Ventas() {
         empleaadoId: '',
         servicioId: '',
         precio: 0,
-        nombreServicio: ''
+        nombreServicio: '',
+        nombreEmpleado: ''
     });
     const [resumenes, setResumenes] = useState<Array<resumen>>([]);
 
@@ -72,8 +74,13 @@ export default function Ventas() {
         if(resumen.servicioId !==''){
             setResumenes([...resumenes, resumen])
         }
-        
+        console.log('actualizar')
     }, [resumen]);
+
+    const addResumen = (inputValues:resumen) =>{
+        console.log(inputValues)
+        setResumen(inputValues)
+    }
 
     return (
         <div className="container">
@@ -82,15 +89,14 @@ export default function Ventas() {
 
                     <h4 className="d-flex justify-content-between align-items-center mb-3">
                         <span className="text-primary">Resumen de compra</span>
-                        <span className="badge bg-primary rounded-pill">3</span>
+                        <span className="badge bg-primary rounded-pill">{resumenes.length}</span>
                     </h4>
-                    <Carrito resumenes={resumenes} />
+                    <Carrito resumenes={resumenes} setResumenes={setResumenes} />
 
                 </div>
 
                 <div className="col-md-7 col-lg-8 card">
-                    <h4 className="mt-3">Datos del cliente</h4>
-                    <FormVentas empleados={empleados} servicios={servicios} setResumen={setResumen} />
+                    <FormVentas empleados={empleados} servicios={servicios} setResumen={setResumen} addResumen={addResumen} />
                 </div>
 
             </div>

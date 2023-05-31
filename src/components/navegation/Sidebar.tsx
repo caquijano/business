@@ -12,9 +12,9 @@ export default function Sidebar() {
                 <hr />
                 <ul className="nav nav-pills flex-column mb-auto" style={{minHeight:"62vh"}}>
                     <li className="nav-item">
-                        <a href="dashboard" className="nav-link active" aria-current="page">
+                        <a href="inicio" className="nav-link active" aria-current="page">
                             <svg className="bi me-2" width="16" height="16"><use></use></svg>
-                            Dashboard
+                            Inicio
                         </a>
                     </li>
                     <li>

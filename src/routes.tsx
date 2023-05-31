@@ -19,7 +19,7 @@ const routesPublic = createBrowserRouter ([
 
 const routesPrivate = createBrowserRouter ([
     { path: '*', element: <NotFound/>},
-    { path: '/dashboard', element: <Ventas/> },
+    { path: '/inicio', element: <Ventas/> },
     { path: '/empleados', element: <Empleados/> },
     { path: '/ventas', element: <Empleados/> },
     { path: '/resumen', element: <Informe/> },
