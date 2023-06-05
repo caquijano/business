@@ -5,11 +5,7 @@ import { db } from '../../firebase'
 import {
     query,
     collection,
-    onSnapshot,
-    updateDoc,
-    doc,
-    addDoc,
-    deleteDoc
+    onSnapshot
 } from 'firebase/firestore'
 
 interface list_servicios {
@@ -74,11 +70,10 @@ export default function Ventas() {
         if(resumen.servicioId !==''){
             setResumenes([...resumenes, resumen])
         }
-        console.log('actualizar')
     }, [resumen]);
 
     const addResumen = (inputValues:resumen) =>{
-        console.log(inputValues)
+      
         setResumen(inputValues)
     }
 
@@ -97,12 +92,6 @@ export default function Ventas() {
 
                 <div className="col-md-7 col-lg-8 card">
                     <FormVentas empleados={empleados} servicios={servicios} setResumen={setResumen} addResumen={addResumen} />
-                </div>
-
-            </div>
-            <div className="row">
-                <div className="col-md-12">
-                    resumen
                 </div>
 
             </div>

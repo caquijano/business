@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {  signInWithEmailAndPassword   } from 'firebase/auth';
 import { auth } from '../../firebase';
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function FormLogin(tipe:any) {
 
@@ -16,13 +16,13 @@ export default function FormLogin(tipe:any) {
             // Signed in
             const user = userCredential.user.uid;
             navigate("/dashboard")
-            console.log(user);
+         
             window.localStorage.setItem("UID",user)
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
+           
         });
        
     }

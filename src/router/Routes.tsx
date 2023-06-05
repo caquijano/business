@@ -13,7 +13,7 @@ import { auth } from '../firebase';
 export default function Routes() {
 
   const [user, setUser] = useState(null)
-  const [activeLink, setActive] = useState(0);
+  const [activeLink, setActive] = useState(7);
 
   const active = (index: number) => {
     console.log(index)

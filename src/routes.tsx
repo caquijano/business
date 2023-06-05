@@ -9,6 +9,7 @@ import Empleados from './components/empleados/Empleados';
 import Informe from './components/Informes/Informe';
 import Servicio from './components/servicios/Servicio'
 import Ventas from './components/ventas/Ventas';
+import Liquidar from './components/liquidar/Liquidar';
 
 const App = lazy(()=> import('./App'));
 
@@ -25,6 +26,8 @@ const routesPrivate = createBrowserRouter ([
     { path: '/resumen', element: <Informe/> },
     { path: '/productos', element: <Empleados/> },
     { path: '/servicios', element: <Servicio/> },
+    { path: '/liquidar', element: <Liquidar/> },
+
     
 ])
 

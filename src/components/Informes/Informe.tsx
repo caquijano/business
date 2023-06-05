@@ -7,9 +7,10 @@ import {
     onSnapshot,
     where
 } from 'firebase/firestore'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const empleados = ['karent', 'Arthuro', 'Laura']
+const formateador = new Intl.NumberFormat('es-ES');
 
 interface venta {
     id: string,
@@ -19,9 +20,17 @@ interface venta {
 }
 
 export default function Informe() {
-    const [ventas, setVentas] = useState<Array<venta>>();
+    const [ventas, setVentas] = useState<Array<venta>>([]);
     const [fechaInicio, setFechaInicio] = useState(0);
     const [fechaFin, setFechaFin] = useState(0);
+    const [total, setTotal] = useState(0)
+    useEffect(() => {
+        let suma = 0
+        for (let i = 0; i < ventas.length; i++) suma += Number(ventas[i].total);
+        setTotal(suma)
+    }, [ventas]);
+
+
     const onChangeDateStart = (e: any) => {
         const fecha = new Date(e.target.value + " 00:00:00")
         setFechaInicio(Number(fecha))
@@ -35,7 +44,7 @@ export default function Informe() {
     const handleSubmit = (e: any) => {
         e.preventDefault()
 
-        const ventasRef = query(collection(db, 'facturas'), where('fecha', '>=', fechaInicio))
+        const ventasRef = query(collection(db, 'facturas'), where('fecha', '>=', fechaInicio),where('fecha','<=',fechaFin))
 
         const unsubscribe = onSnapshot(ventasRef, (querySnapshot) => {
             let todosArr: any[] = [];
@@ -61,7 +70,7 @@ export default function Informe() {
                             onChange={onChangeDateEnd} required></input>
                     </div>
                     <div className="form-group col-sm-3 mr-0">
-                        <label className="form-check-label m-2" >Empleado:</label>
+                        <label className="form-check-label m-2" >Medio de Pago:</label>
                         <select>
                             <option> Todos </option>
                             {empleados.map((empleado, index) => {
@@ -77,13 +86,13 @@ export default function Informe() {
 
             </form >
 
-            <div className="card">
+            <div className="card mt-3">
                 <table className="table">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Fecha</th>
-                            <th>Profesional</th>
+                            <th>Medio de Pago</th>
                             <th>Precio</th>
                         </tr>
                     </thead>
@@ -95,10 +104,10 @@ export default function Informe() {
                                 return (
                                     
                                 <tr>
-                                    <td>{index}</td>
+                                    <td>{index+1}</td>
                                     <td>{fecha}</td>
                                     <td>{venta.medioPago}</td>
-                                    <td>{venta.total}</td>
+                                    <td>${formateador.format(venta.total)}</td>
                                 </tr>
                                 )
                             }
@@ -106,6 +115,12 @@ export default function Informe() {
 
 
                         }
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total :</strong></td>
+                            <td> <strong>${formateador.format(total)}</strong> </td>
+                        </tr>
 
                     </tbody>
                 </table>

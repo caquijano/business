@@ -19,9 +19,8 @@ interface Props {
 }
 
 export default function ListaEmpleados({empleados,setEmpleado,setEditar}:Props) {
-    console.log(empleados);
     const editarEmp = (e:any) =>{
-        const result:list_empleados[] = empleados.filter(empleado => empleado.id == e.target.value)
+        const result:list_empleados[] = empleados.filter(empleado => empleado.id === e.target.value)
         setEmpleado(empleado => (result[0]))
         setEditar(editar => (true))
     }
@@ -42,7 +41,7 @@ export default function ListaEmpleados({empleados,setEmpleado,setEditar}:Props) 
                     if(empleado.id !== '') {
                     return (
                         <tr key={empleado.id}>
-                            <td scope="col" >{index+1}</td>
+                            <td >{index+1}</td>
                             <td>{empleado.nombre}</td>
                             <td>{empleado.apellido}</td>
                             <td>{empleado.utilidad}</td>

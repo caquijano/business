@@ -43,7 +43,7 @@ export default function Servicios() {
     setServicio(lista_vacia)
   };
   const editarServicio = async (servicio: list_servicios) => {
-    console.log(servicio)
+   
     if (servicio.id === '') {
       alert('Por favor valide la informacion');
       return;

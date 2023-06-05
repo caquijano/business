@@ -68,8 +68,8 @@ export default function FormVentas({ empleados, servicios, setResumen,addResumen
     const capturaId = () => {
         var empleadoId = $('#empleado').find(':selected').attr('value')
         var id2 = $('#servicio').find(':selected').attr('value')
-        console.log(empleadoId,id2)
-        if(empleadoId=='default'|| id2 == 'default' || id2 == undefined){
+
+        if(empleadoId==='default'|| id2 === 'default' || id2 === undefined){
             $('#precio').val(0)
             
             return
@@ -77,7 +77,7 @@ export default function FormVentas({ empleados, servicios, setResumen,addResumen
         var servicio = servicios.filter(servicio => servicio.id === id2)[0]
         var empleado = empleados.filter(empleado => empleado.id === empleadoId)[0]
         var { nombre, precio, id } = servicio
-       console.log(empleado)
+      
        
         if (empleadoId && id) {
             setInputValues({
@@ -166,16 +166,14 @@ export default function FormVentas({ empleados, servicios, setResumen,addResumen
                         </div>
                     </div>
 
-                    <div className="col-md-2  mt-0">
+                    <div className="col-md-3  mt-0">
                         <label className="form-label">Precio</label>
                         <input value={precio} type="number" className="form-control" step={1000} />
                         <div className="invalid-feedback">
                             Zip code required.
                         </div>
                     </div>
-                    <div className="col-1 mt-0">
-
-                    </div>
+                 
                     <div className="col-md-1 mt-0">
                         <label className="form-label row">Add</label>
                         <button className="btn btn-dark row"> + </button>

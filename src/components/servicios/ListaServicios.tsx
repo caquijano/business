@@ -19,7 +19,7 @@ const formateador = new Intl.NumberFormat('es-ES');
 
 export default function ListaServicios({ servicios, setServicio, setEditar }: Props) {
     const editarEmp = (e: any) => {
-        const result: list_servicios[] = servicios.filter(servicio => servicio.id == e.target.value)
+        const result: list_servicios[] = servicios.filter(servicio => servicio.id === e.target.value)
         setServicio(servicio => (result[0]))
         setEditar(editar => (true))
     }
@@ -39,7 +39,7 @@ export default function ListaServicios({ servicios, setServicio, setEditar }: Pr
                     if (servicio.id !== '') {
                         return (
                             <tr key={servicio.id}>
-                                <td scope="col" >{index + 1}</td>
+                                <td>{index + 1}</td>
                                 <td>{servicio.nombre}</td>
                                 <td>{servicio.descripcion}</td>
                                 <td  >${formateador.format(servicio.precio)}</td>

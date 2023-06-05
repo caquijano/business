@@ -46,7 +46,6 @@ export default function Empleados() {
     setEmpleado(lista_vacia)
   };
   const editarEmpleado = async (empleado: list_empleados) => {
-    console.log(empleado)
     if (empleado.id === '') {
       alert('Por favor valide la informacion');
       return;

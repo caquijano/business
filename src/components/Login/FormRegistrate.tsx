@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase'
 
@@ -20,7 +20,7 @@ export default function FormRegistrate() {
                 .then((userCredential) => {
                     // Signed in
                     const user = userCredential.user.uid;
-                    console.log(user);
+                   
                     // ...
                     window.localStorage.setItem("UID",user)
                     
@@ -28,8 +28,7 @@ export default function FormRegistrate() {
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    console.log(errorCode, errorMessage);
-                    // ..
+                
                 });
         } else {
             setequals(false)
