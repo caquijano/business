@@ -68,7 +68,7 @@ export default function FormServicios({ nuevoServicio, servicio, editar, setEdit
                             <div className="input-group-prepend">
                                 <div className="input-group-text">$</div>
                             </div>
-                            <input className="form-control" onChange={handleChange} type='number' name='precio' placeholder="Precio" value={inputValues.precio} />
+                            <input className="form-control" onChange={handleChange} type='number' name='precio' placeholder="Precio" step={500} value={inputValues.precio} />
                         </div>
                     </div>
 

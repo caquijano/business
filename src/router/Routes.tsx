@@ -7,17 +7,23 @@ import {
 import App from '../App';
 import { routesPrivate, routesPublic } from "../routes";
 import Sidebar from '../components/navegation/Sidebar';
-import {onAuthStateChanged} from "firebase/auth"
+import { onAuthStateChanged } from "firebase/auth"
 import { auth } from '../firebase';
 
 export default function Routes() {
 
   const [user, setUser] = useState(null)
+  const [activeLink, setActive] = useState(0);
 
-  onAuthStateChanged(auth, (usuarioFirebase:any)=>{
+  const active = (index: number) => {
+    console.log(index)
+    //setActive(index)
+  }
+
+  onAuthStateChanged(auth, (usuarioFirebase: any) => {
     if (usuarioFirebase) {
       setUser(usuarioFirebase)
-    }else{
+    } else {
       setUser(null)
     }
   })
@@ -28,8 +34,8 @@ export default function Routes() {
           ?
           <>
             <Navbar />
-            <div style={{display: 'flex'}}>
-              <Sidebar />
+            <div style={{ display: 'flex' }}>
+              <Sidebar activeLink={activeLink} active={active} />
               <RouterProvider router={routesPrivate} />
             </div>
           </>

@@ -8,8 +8,7 @@ import {
   onSnapshot,
   updateDoc,
   doc,
-  addDoc,
-  deleteDoc
+  addDoc
 } from 'firebase/firestore'
 
 
